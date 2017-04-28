@@ -9,6 +9,7 @@ Repositório para a nova arquitetura do projeto Hotspot Plaza Hoteis
 - Task Runner: [Gulp](http://www.gulpjs.com/)
 - HTML Template Engine: [Pug](http://pugjs.com/api/getting-started.html)
 - CSS Preprocessor: [Stylus](http://www.stylus-lang.com/)
+- Minify Images: [Imagemin](https://github.com/imagemin/imagemin)
 - Browser Testing: [Browsersync](http://browsersync.io)
 
 ## Run the project locally
