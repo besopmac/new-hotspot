@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/brunonigro/new-hotspot/issues"
   },
-  "homepage": "https://github.com/brunonigro/new-hotspot#readme"
+  "homepage": "https://github.com/brunonigro/new-hotspot#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-pug": "^3.3.0",
+    "gulp-stylus": "^2.6.0"
+  }
 }
