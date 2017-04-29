@@ -1,39 +1,46 @@
-var gulp        = require('gulp')
-var pug         = require('gulp-pug')
-var stylus      = require('gulp-stylus')
-var imagemin    = require('imagemin')
-var browserSync = require('brownser-sync').create()
+var gulp     = require('gulp')
+var pug      = require('gulp-pug')
+var stylus   = require('gulp-stylus')
+var imagemin = require('gulp-imagemin')
+var connect  = require('gulp-connect')
 
 gulp.task('pug', function() {
   gulp.src('./src/*.pug')
       .pipe(pug())
       .pipe(gulp.dest('./out/'))
+      .pipe(connect.reload())
 })
 
 gulp.task('stylus', function() {
-  gulp.src('./src/assets/styles/*.styl')
-      .pipe(stylus())
-      .pipe(gulp.dest('./out/assets/styles/'))
+  gulp.src('./src/assets/css/*.styl')
+      .pipe(stylus({
+        compress: true
+      }))
+      .pipe(gulp.dest('./out/assets/css'))
+      .pipe(connect.reload())
 })
 
 gulp.task('imagemin', function() {
-  gulp.src('./src/assets/img/*')
-      .pipe(imagemin())
-      .pipe(gulp.dest('./out/assets/img'))
+  gulp.src('./src/assets/*')
+      .pipe(imagemin([
+        imagemin.jpegtran({
+          progressive: true
+        })
+      ]))
+      .pipe(gulp.dest('./out/assets'))
 })
 
-gulp.task('watch', ['pug','stylus'], function(done) {
-  browserSync.reload()
-  done()
+gulp.task('watch', function() {
+  gulp.watch(['./src/*.pug'], ['pug'])
+  gulp.watch(['./src/assets/css/*.styl'], ['stylus'])
 })
 
-gulp.task('serve', ['pug'], function() {
-  browserSync.init({
-    server: {
-      baseDir: "./out"
-    },
-    notify: false
+gulp.task('connect', function() {
+  connect.server({
+    root: './out',
+    livereload: true
   })
-
-  gulp.watch('./src/*.pug', ['pug'])
 })
+
+gulp.task('build', ['pug', 'stylus', 'imagemin'])
+gulp.task('server', ['connect', 'watch'])
