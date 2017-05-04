@@ -21,10 +21,13 @@
   },
   "homepage": "https://github.com/brunonigro/new-hotspot#readme",
   "devDependencies": {
+    "autoprefixer": "^6.7.7",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
     "gulp-imagemin": "^3.2.0",
     "gulp-pug": "^3.3.0",
-    "gulp-stylus": "^2.6.0"
+    "gulp-stylus": "^2.6.0",
+    "lost": "^8.0.0",
+    "poststylus": "^0.2.3"
   }
 }

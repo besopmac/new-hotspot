@@ -1,8 +1,11 @@
-var gulp     = require('gulp')
-var pug      = require('gulp-pug')
-var stylus   = require('gulp-stylus')
-var imagemin = require('gulp-imagemin')
-var connect  = require('gulp-connect')
+var gulp          = require('gulp'),
+    pug           = require('gulp-pug'),
+    stylus        = require('gulp-stylus'),
+    poststylus    = require('poststylus'),
+    autoprefixer  = require('autoprefixer'),
+    lost          = require('lost'),
+    imagemin      = require('gulp-imagemin'),
+    connect       = require('gulp-connect');
 
 gulp.task('pug', function() {
   gulp.src('./src/*.pug')
@@ -14,7 +17,9 @@ gulp.task('pug', function() {
 gulp.task('stylus', function() {
   gulp.src('./src/assets/css/*.styl')
       .pipe(stylus({
-        compress: true
+        use: [
+          poststylus(['autoprefixer','lost'])
+        ]
       }))
       .pipe(gulp.dest('./out/assets/css'))
       .pipe(connect.reload())
