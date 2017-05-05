@@ -1,20 +1,20 @@
-var gulp          = require('gulp'),
-    pug           = require('gulp-pug'),
-    stylus        = require('gulp-stylus'),
-    poststylus    = require('poststylus'),
-    autoprefixer  = require('autoprefixer'),
-    lost          = require('lost'),
-    imagemin      = require('gulp-imagemin'),
-    connect       = require('gulp-connect');
+const gulp = require('gulp')
+const pug = require('gulp-pug')
+const stylus = require('gulp-stylus')
+const poststylus = require('poststylus')
+const autoprefixer = require('autoprefixer')
+const lost = require('lost')
+const imagemin = require('gulp-imagemin')
+const connect = require('gulp-connect')
 
-gulp.task('pug', function() {
+gulp.task('pug', () => {
   gulp.src('./src/*.pug')
       .pipe(pug())
       .pipe(gulp.dest('./out/'))
       .pipe(connect.reload())
 })
 
-gulp.task('stylus', function() {
+gulp.task('stylus', () => {
   gulp.src('./src/assets/css/*.styl')
       .pipe(stylus({
         use: [
@@ -25,7 +25,7 @@ gulp.task('stylus', function() {
       .pipe(connect.reload())
 })
 
-gulp.task('imagemin', function() {
+gulp.task('imagemin', () => {
   gulp.src('./src/assets/*')
       .pipe(imagemin([
         imagemin.jpegtran({
@@ -35,12 +35,12 @@ gulp.task('imagemin', function() {
       .pipe(gulp.dest('./out/assets'))
 })
 
-gulp.task('watch', function() {
-  gulp.watch(['./src/*.pug'], ['pug'])
+gulp.task('watch', () => {
+  gulp.watch(['./src/**/*.pug'], ['pug'])
   gulp.watch(['./src/assets/css/*.styl'], ['stylus'])
 })
 
-gulp.task('connect', function() {
+gulp.task('connect', () => {
   connect.server({
     root: './out',
     livereload: true
