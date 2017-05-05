@@ -46,7 +46,7 @@ $ gulp server
     |   |   ├── img/
     |   |   ├── scripts/
     |   |   |   └── script.js
-    |   |   └── styles/
+    |   |   └── css/
     |   |       ├── modules/
     |   |       └── style.styl
     |   ├── partials/

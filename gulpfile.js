@@ -17,6 +17,7 @@ gulp.task('pug', () => {
 gulp.task('stylus', () => {
   gulp.src('./src/assets/css/*.styl')
       .pipe(stylus({
+        compress: true,
         use: [
           poststylus(['autoprefixer','lost'])
         ]
@@ -37,7 +38,7 @@ gulp.task('imagemin', () => {
 
 gulp.task('watch', () => {
   gulp.watch(['./src/**/*.pug'], ['pug'])
-  gulp.watch(['./src/assets/css/*.styl'], ['stylus'])
+  gulp.watch(['./src/assets/css/**/*.styl'], ['stylus'])
 })
 
 gulp.task('connect', () => {
